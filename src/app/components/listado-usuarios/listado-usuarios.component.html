@@ -1,0 +1,12 @@
+<div class="wrapper">
+    <div class="row g-4 m-1">
+        <article *ngFor="let usuario of arrUsuarios" class="col-sm-12 col-md-9 col-xl-3">
+            <app-usuario [miUsuario]="usuario" ></app-usuario>
+        </article>
+    </div>
+</div>
+
+<button (click)="probando()">probar</button>
+
+<!-- <app-modal texto="¿Estás seguro de que quieres borrar id = {{idBorrar}} ?" (confirmacion)="borrar(idBorrar!)"></app-modal> -->
+

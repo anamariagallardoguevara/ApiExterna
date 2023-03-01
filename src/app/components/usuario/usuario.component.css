@@ -1,0 +1,15 @@
+.user-image{
+    max-width: 12.5rem;
+    margin: 1.25rem auto;
+    border-radius: 50%;
+}
+
+.user-name{
+    text-align: center;
+}
+
+.user-button{
+    width: 5.6rem;
+    height: 2.5rem;
+    font-size: 0.875rem;
+}

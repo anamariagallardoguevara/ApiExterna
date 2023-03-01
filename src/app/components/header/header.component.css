@@ -1,0 +1,40 @@
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    border-bottom: 1px solid rgb(51, 50, 50);
+}
+
+.logo{
+    margin: 0;
+}
+
+.logo a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+nav{
+    margin: 0;
+}
+
+.menu{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.menu-link{
+    text-decoration: none;
+    color: black;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+.menu-link:hover{
+    color: red;
+}
