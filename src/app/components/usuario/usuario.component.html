@@ -1,11 +1,13 @@
 <div class="card">
-    <img src= "{{miUsuario.image}}" class="card-img-top user-image">
-    <div class="card-body">
-      <h5 class="card-title user-name">{{miUsuario.name}} {{miUsuario.surname}}</h5>
-      <a [routerLink]="['/user/', miUsuario.id]" class="btn btn-primary user-button mx-1">Detalles</a>
-      <a href="#" class="btn btn-primary user-button ">Actualizar</a>
-      <a href="#" class="btn btn-primary user-button mx-1">Borrar</a>
-    </div>
+  <div class="d-flex">
+    <img [src]="miUsuario.image" [alt]="miUsuario.first_name" class="card-img-top user-image">
   </div>
+  <h5 class="card-title user-name">{{miUsuario.first_name}} {{miUsuario.last_name}}</h5>
+  <div class="card-body d-flex">
+    <button [routerLink]="['/user/', miUsuario._id]" class="btn btn-primary user-button mx-1">Detalles</button>
+    <button [routerLink]="['/update/', miUsuario._id]" class="btn btn-primary user-button">Actualizar</button>
+    <button (click)="borrarUsuario(miUsuario._id)" class="btn btn-danger user-button mx-1">Borrar</button>
+  </div>
+</div>
 
   

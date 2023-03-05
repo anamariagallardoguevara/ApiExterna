@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { USUARIOS } from '../db/usuariosdb';
+import { lastValueFrom } from 'rxjs';
 import { Usuario } from '../interfaces/usuario.interface';
 
 @Injectable({
@@ -7,40 +8,30 @@ import { Usuario } from '../interfaces/usuario.interface';
 })
 export class UsuariosService {
 
-  private arrUsuarios: Usuario[] = USUARIOS;
+  private baseUrl:string = 'https://peticiones.online/api/users/'
 
-  constructor() {}
-
-  getAll(): Usuario[] {
-    return this.arrUsuarios;
+  constructor(private httpClient: HttpClient) {}
+ 
+  getAll(pPage: number = 1): Promise<any>{
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}?page=${pPage}`))
   }
 
-  getById(pId: number) : Usuario | undefined{
-    return this.arrUsuarios.find(usuario => usuario.id === pId);
+  getById(pId: string) : Promise<any>{
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}${pId}`))
   }
 
-  insertar(usurio: Usuario){
-    if(this.arrUsuarios){
-      const utimoUsuario = this.arrUsuarios.at(-1)
-      if(utimoUsuario){
-        usurio.id = utimoUsuario.id?utimoUsuario.id+1: 1
-      } else{
-        usurio.id = 1
-      }
-      this.arrUsuarios.push(usurio)
-    }
-  }
-   
-
-  actualizar(usurio: Usuario) {
-  
-   }
-
-  borrar(usurio: Usuario){
-
+  insertarUsuario(pUsuario: Usuario) : Promise<Usuario>{
+    return lastValueFrom(this.httpClient.post<Usuario>(this.baseUrl, pUsuario))
   }
 
+  actualizarUsuario(pUsuario: Usuario) : Promise<Usuario>{
+    return lastValueFrom(this.httpClient.put<Usuario>(`${this.baseUrl}${pUsuario._id}`, pUsuario))
+  }
 
-
+  delete(pId: string): Promise <any>{
+    return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}${pId}`));
+  }
 }
+
+
 

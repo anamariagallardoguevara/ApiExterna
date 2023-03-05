@@ -1,12 +1,19 @@
 <div class="wrapper">
     <div class="row g-4 m-1">
-        <article *ngFor="let usuario of arrUsuarios" class="col-sm-12 col-md-9 col-xl-3">
-            <app-usuario [miUsuario]="usuario" ></app-usuario>
+        <article *ngFor="let usuario of arrUsuarios" class="col-sm-12 col-md-6 col-xl-4">
+            <app-usuario [miUsuario]="usuario"></app-usuario>
         </article>
     </div>
+
+    <div class="mt-5">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link text-bg-primary">{{currentPage}} de {{totalPages}}</a></li>
+                <li class="page-item m-0"><button class="page-link text-bg-primary" (click)="goToPage(currentPage-1)"
+                        [disabled]="currentPage === 1">Previous</button></li>
+                <li class="page-item"><button class="page-link text-bg-primary" (click)="goToPage(currentPage+1)"
+                        [disabled]="currentPage === totalPages">Next</button></li>
+            </ul>
+        </nav>
+    </div>
 </div>
-
-<button (click)="probando()">probar</button>
-
-<!-- <app-modal texto="¿Estás seguro de que quieres borrar id = {{idBorrar}} ?" (confirmacion)="borrar(idBorrar!)"></app-modal> -->
-

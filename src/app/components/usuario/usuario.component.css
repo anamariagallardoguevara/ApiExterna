@@ -1,11 +1,12 @@
 .user-image{
-    max-width: 12.5rem;
+    max-width: 12rem;
     margin: 1.25rem auto;
     border-radius: 50%;
+    align-items: center;
 }
 
 .user-name{
-    text-align: center;
+    text-align: right;
 }
 
 .user-button{

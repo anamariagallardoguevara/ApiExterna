@@ -1,35 +1,31 @@
-import Swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
-
 @Component({
   selector: 'app-listado-usuarios',
   templateUrl: './listado-usuarios.component.html',
-  styleUrls: ['./listado-usuarios.component.css']
+  styleUrls: ['./listado-usuarios.component.css'],
 })
-export class ListadoUsuariosComponent implements OnInit{
-
+export class ListadoUsuariosComponent implements OnInit {
   arrUsuarios: Usuario[] = [];
-  // idEliminar?: number;
-  
-  constructor(private usuariosService: UsuariosService){}
+  currentPage: number = 1;
+  totalPages: number = 1;
+
+  constructor(private usuariosService: UsuariosService) {}
 
   ngOnInit(): void {
-    this.arrUsuarios = this.usuariosService.getAll()
+    this.goToPage();
   }
-
-  probando(): void{(error: any) => {
-    Swal.fire('Any fool can use a computer')
-  };
-
+  async goToPage(pNum: number = 1): Promise<void> {
+    try {
+      let response = await this.usuariosService.getAll(pNum);
+      console.log(response);
+      this.currentPage = response.page;
+      this.totalPages = response.total_pages;
+      this.arrUsuarios = response.results;
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-  // eliminar(id: number): void{
-  //   this.usuariosService.eliminar(id).subcribe(
-  //     () => this.arrUsuarios
-  //   )
-  // }
-
 }

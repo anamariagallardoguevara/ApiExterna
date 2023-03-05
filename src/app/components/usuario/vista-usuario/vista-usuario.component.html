@@ -1,18 +1,23 @@
-<div class="card mb-3 wrapper" style="max-width: 540px;">
-  <div class="row g-5">
-    <div class="col-md-4">
-      <img src="{{usuario.image}}"  class="img-fluid rounded-start">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{usuario.name}}</h5>
-        <h5 class="card-title">{{usuario.surname}}</h5>
-        <p class="card-text">Usuario: {{usuario.username}}</p>
-        <p class="card-text">class="text-muted">Email: {{usuario.email}}</p>
-        <a href="#" class="btn btn-primary user-button">Borrar</a>
-        <a href="#" class="btn btn-primary user-button">Actualizar</a>
-        <a href="#" class="btn btn-primary user-button">Volver al listado</a>
+<div class="wrapper p-3">
+  <div class="card mb-3 shadow p-3" style="max-width: 640px">
+    <div *ngIf="usuario" class="row g-5">
+      <figure class="col-md-4">
+        <img [src]="usuario.image" [alt]="usuario.first_name" class="img-fluid rounded-start user-image">
+      </figure>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{usuario.first_name}}</h5>
+          <h5 class="card-title">{{usuario.last_name}}</h5>
+          <p class="card-text">Usuario: {{usuario.username}}</p>
+          <p class="card-text" class="text-muted">Email: {{usuario.email}}</p>
+          <div>
+            <button class="btn btn-danger user-button user-button mx-2" (click)="borrarUsuario(usuario._id)" >Borrar</button>
+            <button class="btn btn-primary user-button user-button mx-2" [routerLink]="['/update/', usuario._id]">Actualizar</button>
+            <button class="btn btn-primary user-button user-button mx-2" [routerLink]="['/home']">Volver</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
